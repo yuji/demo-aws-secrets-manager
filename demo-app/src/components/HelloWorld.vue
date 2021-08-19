@@ -4,8 +4,8 @@
     <h2>Pets</h2>
     <ul>
       <li v-for="pet in pets" :key="pet.id">
-        <p><span>{{type}}</span></p>
-        <p><span>{{price}}</span></p>
+        <p><span>{{pet.type}}</span></p>
+        <p><span>{{pet.price}}</span></p>
       </li>
     </ul>
   </div>
@@ -23,6 +23,7 @@ export default {
     }
   },
   mounted () {
+    var $this = this
     this.$axios
       .get(this.api_endpoint, {
         headers: {
@@ -32,7 +33,7 @@ export default {
         data: {}
       })
       .then(response => {
-        this.pets = response.data.contents
+        $this.pets = response.data
       })
   }
 }
